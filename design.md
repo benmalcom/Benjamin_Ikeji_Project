@@ -2,23 +2,26 @@
 
 ### Overview
 
-The goal of this project was to build a React application that consumed the Lord of the Rings API and displayed information about the movies, characters, and quotes. The application was developed using React and TypeScript, while adhering to good code quality and readability standards. In addition, the UI/UX was designed to be well-structured, and the project included a README file with installation, usage, and testing instructions. The website was made to be able to run locally and had a live demo.
+The goal of this project is to build a React application that consumes the Lord of the Rings API and displays information about the movies, characters, and quotes.
+The application was developed using React and TypeScript, with an emphasis on code quality and readability. The UI/UX design aimed to create an immersive Lord of the Rings-themed experience.
+The project includes a README file with installation, usage, and testing instructions, and there's provision to run it locally and also online with the live demo link provided.
 
 ### Technology Stack
 
 Based on the requirements, the following technology stack was chosen for this project:
 
-- [React](https://react.dev/)
-- [TypeScript](https://www.typescriptlang.org/)
-- [Chakra UI](https://chakra-ui.com/)
-- [TanStack Query](https://tanstack.com/query/v4)
-- ...and others
+- [React](https://react.dev/): A JavaScript library for building user interfaces
+- [TypeScript](https://www.typescriptlang.org/): A statically typed superset of JavaScript that improves code maintainability and scalability.
+- [Next.js](https://nextjs.org/): A React framework that enables server-side rendering, static site generation, and other powerful features for building fast and scalable web applications.
+- [Chakra UI](https://chakra-ui.com/): A component library for React that provides customizable and accessible UI components.
+- [TanStack Query](https://tanstack.com/query/v4): A powerful data-fetching and caching library for handling API requests.
+- ...and other relevant libraries or tools specific to the project's needs.
 
 ### Project Structure
 
-The project structure was organized and modular to promote code reusability and maintainability. The chosen project structure was as follows:
+The project structure was organized to promote code reusability, maintainability, and scalability as the project grows:
 
-- public/
+- public/ -
   - images
   - ...
 - src/
@@ -47,23 +50,23 @@ The project structure was organized and modular to promote code reusability and 
 - package.json
 - README.md
 - design.md
+- ...
 
 ### UI/UX Design
 
-The UI/UX design is visually appealing and user-oriented. It implements a similar experience as a cinema website (with a Lord of the Rings theme color)
-where a user is welcomed by lists of movies available and from each movie the user can begin exploration into its details.
+The UI/UX design aimed to create an engaging and user-friendly Lord of the Rings-themed experience. The following design decisions were implemented:
 
-Here are some of the decisions taken:
-
-- Used a responsive layout to ensure the website worked well on different devices and screen sizes.
-- Implemented a navigation bar/header to provide easy access to different sections of the website.
-- Used appropriate typography, colors, and visual elements (from [Chakra UI](https://chakra-ui.com/)) to create an immersive Lord of the Rings-themed experience.
-- Implemented loading and error states to handle data fetching and error scenarios gracefully.
-- Infinite scrolling where the API response contained a large number.
+- Chakra UI was chosen as the CSS framework for its component-based approach, accessibility, responsive styles, developer-friendly API, theming capabilities, and active community support.
+- Utilized a responsive layout to ensure optimal viewing on various devices and screen sizes.
+- Implemented a navigation bar or header to enable easy navigation between different sections of the website.
+- Incorporated appropriate typography, colors, and visual elements from the Chakra UI library to align with the Lord of the Rings theme.
+- Handled loading and error states gracefully to provide a seamless experience during data fetching and error scenarios.
+- Implemented infinite scrolling in cases where the API response contained a large number of items, ensuring a smoother browsing experience.
+- Utilized Loading Skeletons to provide visual feedback and enhance the user experience while waiting for data to load.
 
 ### Other Considerations
 
-- The API has some limitations which needs to be worked around, for example there's no way to know which character made a quote because each quote object does not come with
-  a character name, just character id. Hence we have to prefetch all the characters and look up the character id of the person who made the quote in other to get their name.
-- There's only one unified character endpoint as each movie does not have an endpoint to fetch its own characters, hence we have to fetch the same characters endpoint for all movies.
-- Since the API is not robust enough, I adopted some self-sourced resources in the `/data/metaInformation.json` file to further improve the UI/UX.
+- Due to limitations in the Lord of the Rings API, some workarounds were implemented:
+  - Character identification: Since the API does not provide character names directly with quotes, character IDs were used to fetch and associate character names.
+  - Unified character endpoint: As there are no individual character endpoints for each movie, the same characters endpoint was fetched for all movies.
+- To enhance the UI/UX and provide additional information, self-sourced resources were utilized, such as the `/data/metaInformation.json` file which contains additional movie details not available directly from the API.

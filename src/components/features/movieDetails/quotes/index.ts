@@ -1,1 +1,1 @@
-export { default as QuotesGridLayout } from './QuotesGridLayout';
+export { default as QuotesLayout } from './QuotesLayout';

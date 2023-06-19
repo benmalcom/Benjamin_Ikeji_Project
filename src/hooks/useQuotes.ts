@@ -28,9 +28,11 @@ export const useFetchMovieQuotes = (
 
 export const useFetchCharacterQuotes = (
   characterId: string,
+  enabled: boolean,
   params?: Record<string, unknown>
 ) => {
   const {
+    isLoading,
     isFetching,
     data = INITIAL_FETCH_DATA,
     error,
@@ -38,12 +40,12 @@ export const useFetchCharacterQuotes = (
   } = useQuery<QuotesApiResponse, Error>({
     queryKey: ['characterQuotes', characterId, params],
     queryFn: () => getCharacterQuotes(characterId, params),
-    enabled: false,
+    enabled,
   });
 
   return {
     data,
-    loading: isFetching,
+    loading: isLoading || isFetching,
     error,
     fetchQuotes: refetch,
   };

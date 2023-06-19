@@ -9,8 +9,8 @@ const useIntersectionObserver = (
     const node = targetRef.current;
     const options = {
       root: null,
-      rootMargin: '0px',
-      threshold: 0.4,
+      rootMargin: '5px',
+      threshold: 0.1, // half of item height
     };
     const observer = new IntersectionObserver((entries, observer) => {
       const [entry] = entries;

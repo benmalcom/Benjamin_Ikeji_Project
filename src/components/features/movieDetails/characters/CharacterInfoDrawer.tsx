@@ -13,8 +13,9 @@ import {
   Button,
 } from '@chakra-ui/react';
 import React, { useEffect, useMemo, useState } from 'react';
+import { GoQuote } from 'react-icons/go';
 import { FlexColumn } from 'components/common';
-import QuotesGridLayout from 'components/features/movieDetails/quotes/QuotesGridLayout';
+import { QuotesLayout } from 'components/features/movieDetails/quotes';
 import { useFetchCharacterQuotes } from 'hooks/useQuotes';
 import { CharacterType } from 'types/character';
 import { QuoteType } from 'types/quote';
@@ -32,14 +33,14 @@ const CharacterInfo: React.FC<CharacterInfoProps> = ({
   const { isOpen, onClose, onToggle } = useDisclosure();
   const [page, setPage] = useState(1);
   const [quotes, setQuotes] = useState<QuoteType[]>([]);
-  const [isClicked, setIsClicked] = useState(false);
+  const [showQuotes, setShowQuotes] = useState(false);
 
   const {
     data: quotesData,
     loading: isLoadingQuotes,
     error: quotesError,
     fetchQuotes,
-  } = useFetchCharacterQuotes(character._id, {
+  } = useFetchCharacterQuotes(character._id, showQuotes, {
     page,
     limit: FETCH_LIMIT,
   });
@@ -60,8 +61,8 @@ const CharacterInfo: React.FC<CharacterInfoProps> = ({
   }, [quotesData]);
 
   const handleFetch = () => {
-    setIsClicked(true);
     fetchQuotes();
+    setShowQuotes(true);
   };
   const handleLoadMore = () => {
     if (!isLoadingQuotes && hasMoreQuotes) {
@@ -69,7 +70,6 @@ const CharacterInfo: React.FC<CharacterInfoProps> = ({
     }
     return;
   };
-
   const charactersById = { [character._id]: character };
   const attributes = getCharacterAttributes(character);
   return (
@@ -133,20 +133,22 @@ const CharacterInfo: React.FC<CharacterInfoProps> = ({
                 </Flex>
               )}
               <FlexColumn flex={1} gap={6}>
-                {quotes.length === 0 && !isClicked && (
+                {quotes.length === 0 && !showQuotes && (
                   <Button
                     colorScheme="orange"
                     size="sm"
                     width="fit-content"
-                    px={8}
+                    px={6}
                     onClick={handleFetch}
                     mb={2}
+                    leftIcon={<GoQuote />}
+                    iconSpacing={1}
                   >
                     See quites from {character.name}
                   </Button>
                 )}
-                {isClicked && (
-                  <QuotesGridLayout
+                {showQuotes && (
+                  <QuotesLayout
                     charactersById={charactersById}
                     quotes={quotes}
                     loading={isLoadingQuotes}

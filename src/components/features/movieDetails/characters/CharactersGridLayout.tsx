@@ -1,6 +1,6 @@
-import { Grid, Container, Box } from '@chakra-ui/react';
+import { Grid, Container } from '@chakra-ui/react';
 import React, { useRef } from 'react';
-import { ErrorPane, FlexColumn } from 'components/common';
+import { ErrorPane, FlexColumn, LoadMoreIndicator } from 'components/common';
 import useIntersectionObserver from 'hooks/useIntersectionObserver';
 import { CharacterType } from 'types/character';
 import CharacterCard from './CharacterCard';
@@ -58,7 +58,9 @@ const CharactersGirdLayout: React.FC<CharactersGirdLayoutProps> = ({
           w="fit-content"
         />
       )}
-      {!loading && hasMore && !error && <Box ref={bottomRef} mb={6} h="10px" />}
+      {!loading && hasMore && !error && (
+        <LoadMoreIndicator ref={bottomRef} mb={6} />
+      )}
     </FlexColumn>
   );
 };

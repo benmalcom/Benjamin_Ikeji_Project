@@ -109,7 +109,7 @@ const Details = () => {
                 <Button
                   onClick={handleFetchMovie}
                   ml={5}
-                  colorScheme="orange"
+                  colorScheme="red"
                   size="sm"
                 >
                   Try again

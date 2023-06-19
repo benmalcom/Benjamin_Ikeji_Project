@@ -12,7 +12,7 @@ import useFetchCharacters from 'hooks/useCharacters';
 import useFetchMovieQuotes from 'hooks/useQuotes';
 import { CharacterType } from 'types/character';
 import { QuoteType } from 'types/quote';
-import QuotesGridLayout from './QuotesGridLayout';
+import QuotesLayout from './QuotesLayout';
 const FETCH_LIMIT = 15;
 
 type CharactersGirdLayoutProps = {
@@ -96,7 +96,7 @@ const QuotesDrawer: React.FC<CharactersGirdLayoutProps> = ({
           <DrawerCloseButton color="white" _focus={{ outline: 'none' }} />
           <DrawerHeader color="white">Quotes from movie</DrawerHeader>
           <DrawerBody>
-            <QuotesGridLayout
+            <QuotesLayout
               charactersById={charactersById}
               quotes={quotes}
               loading={isLoadingQuotes}

@@ -14,6 +14,7 @@ queryClient.setDefaultOptions({
   queries: {
     cacheTime: 0,
     retry: false,
+    refetchOnWindowFocus: false,
   },
 });
 

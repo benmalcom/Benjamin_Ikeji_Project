@@ -1,14 +1,19 @@
 import { Container, Box } from '@chakra-ui/react';
 import { css } from '@emotion/react';
 import React, { useRef } from 'react';
-import { ErrorPane, FlexColumn, InfoPane } from 'components/common';
+import {
+  ErrorPane,
+  FlexColumn,
+  InfoPane,
+  LoadMoreIndicator,
+} from 'components/common';
 import useIntersectionObserver from 'hooks/useIntersectionObserver';
 import { CharacterType } from 'types/character';
 import { QuoteType } from 'types/quote';
 import QuoteCard from './QuoteCard';
 import QuoteCardSkeleton from './QuoteCardSkeleton';
 
-type CharactersGirdLayoutProps = {
+type QuotesLayoutProps = {
   quotes: QuoteType[];
   loading?: boolean;
   onLoadMore(): void;
@@ -16,7 +21,7 @@ type CharactersGirdLayoutProps = {
   error?: string;
   charactersById: { [key: string]: CharacterType };
 };
-const CharactersGirdLayout: React.FC<CharactersGirdLayoutProps> = ({
+const QuotesLayout: React.FC<QuotesLayoutProps> = ({
   quotes,
   loading,
   error,
@@ -63,10 +68,8 @@ const CharactersGirdLayout: React.FC<CharactersGirdLayoutProps> = ({
           py={3}
         />
       )}
-      {!loading && hasMore && (
-        <Box ref={bottomRef} mb={6} h="70px" border="2px solid black" />
-      )}
+      {!loading && hasMore && <LoadMoreIndicator ref={bottomRef} mb={6} />}
     </FlexColumn>
   );
 };
-export default CharactersGirdLayout;
+export default QuotesLayout;
