@@ -8,6 +8,7 @@ const Footer = () => (
     bg="blackAlpha.500"
     borderTop="0.1px solid"
     borderTopColor="orange.400"
+    mt={12}
   >
     <Container as="footer" role="contentinfo" maxW="7xl" h="full">
       <Flex

@@ -32,6 +32,7 @@ const SideNav: React.FC<MovieCardSkeletonType> = ({
       icon={<BsChevronUp />}
       isDisabled={isTopVisible}
       onClick={onScrollUp}
+      _focus={{ outline: 'none' }}
     />
     <IconButton
       colorScheme={isBottomVisible ? 'gray' : 'orange'}
@@ -39,6 +40,7 @@ const SideNav: React.FC<MovieCardSkeletonType> = ({
       icon={<BsChevronDown />}
       isDisabled={isBottomVisible}
       onClick={onScrollDown}
+      _focus={{ outline: 'none' }}
     />
   </FlexColumn>
 );

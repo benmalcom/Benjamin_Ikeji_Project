@@ -8,7 +8,7 @@ import {
 import React from 'react';
 import { FlexColumn } from 'components/common';
 
-const MovieDetailsSkeleton = () => {
+const MovieDetailsCardSkeleton = () => {
   return (
     <FlexColumn gap={10} mt={10} w="full" px={{ base: 3, lg: 'unset' }}>
       <FlexColumn gap={3}>
@@ -91,4 +91,4 @@ const MovieDetailsSkeleton = () => {
   );
 };
 
-export default MovieDetailsSkeleton;
+export default MovieDetailsCardSkeleton;

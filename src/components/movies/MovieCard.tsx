@@ -15,7 +15,7 @@ import { GiTrophyCup, GiTomato } from 'react-icons/gi';
 import { FlexColumn, MotionFlex } from 'components/common';
 import AppErrorFallBack from 'components/common/AppErrorFallBack';
 import { MovieMetaInformationType, MovieType } from 'types/movie';
-import { getMovieMetaInformation } from 'utils/movieUtils';
+import { getMovieMetaInformation, getTrailerLink } from 'utils/movieUtils';
 
 const POSTER_IMAGE_PATH = '/images/lotr/';
 
@@ -103,7 +103,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
             size="sm"
             borderRadius={0}
             target="_blank"
-            href={`https://youtube.com/results?search_query=${movie.name} trailer`}
+            href={getTrailerLink(movie.name)}
           >
             Watch Trailer
           </Button>

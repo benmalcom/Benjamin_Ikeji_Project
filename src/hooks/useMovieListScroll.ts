@@ -1,49 +1,52 @@
+import throttle from 'lodash.throttle';
 import { useEffect, useState } from 'react';
 const SCROLL_TOP_VALUE = 200;
 
 const useMovieListScroll = (targetEl: HTMLElement) => {
-  const [visibility, setVisibility] = useState({
-    top: true,
-    bottom: false,
-  });
+  const [isTopVisible, setIsTopVisible] = useState(true);
+  const [isBottomVisible, setIsBottomVisible] = useState(false);
+
   useEffect(() => {
     if (typeof window === 'undefined' || !targetEl) return;
 
-    const handleBoundsVisibility = () => {
+    const onScroll = () => {
       const bottom = targetEl.getBoundingClientRect().bottom;
       const top = targetEl.getBoundingClientRect().top;
       const windowHeight = window.innerHeight;
       const windowYPos = window.scrollY;
-      setVisibility({
-        top: top > 0 && windowYPos <= 0,
-        bottom: windowHeight > bottom,
-      });
+      setIsTopVisible(top > 0 && windowYPos <= 0);
+      setIsBottomVisible(windowHeight > bottom);
     };
 
-    // I heartily recommend to use some kind of throttling (lo-dash.throttle) here to reduce amount of callback executions
-    document.addEventListener('scroll', handleBoundsVisibility);
+    // Use a custom hook to throttle the scroll event
+    const handleScroll = throttle(onScroll, 100);
+    document.addEventListener('scroll', handleScroll);
     return () => {
-      document.removeEventListener('scroll', handleBoundsVisibility);
+      document.removeEventListener('scroll', handleScroll);
     };
   }, [targetEl]);
 
-  const onScrollUp = () => {
-    if (visibility.top) return;
-    const pos = window.scrollY;
-    window.scrollTo({ top: pos - SCROLL_TOP_VALUE, behavior: 'smooth' });
+  const triggerScrollUp = () => {
+    if (isTopVisible) return;
+    window.scrollTo({
+      top: window.scrollY - SCROLL_TOP_VALUE,
+      behavior: 'smooth',
+    });
   };
 
-  const onScrollDown = () => {
-    if (visibility.bottom) return;
-    const pos = window.scrollY;
-    window.scrollTo({ top: pos + SCROLL_TOP_VALUE, behavior: 'smooth' });
+  const triggerScrollDown = () => {
+    if (isBottomVisible) return;
+    window.scrollTo({
+      top: window.scrollY + SCROLL_TOP_VALUE,
+      behavior: 'smooth',
+    });
   };
 
   return {
-    isBottomVisible: visibility.bottom,
-    isTopVisible: visibility.top,
-    onScrollUp,
-    onScrollDown,
+    isBottomVisible,
+    isTopVisible,
+    triggerScrollUp,
+    triggerScrollDown,
   };
 };
 

@@ -20,6 +20,7 @@ import {
   formatNumberWithCurrency,
   formatViewingTime,
   getMovieMetaInformation,
+  getTrailerLink,
 } from 'utils/movieUtils';
 
 const POSTER_IMAGE_PATH = '/images/lotr/';
@@ -27,7 +28,7 @@ const POSTER_IMAGE_PATH = '/images/lotr/';
 type MovieCardProps = {
   movie: MovieType;
 };
-const MovieDetails: React.FC<MovieCardProps> = ({ movie }) => {
+const MovieDetailsCard: React.FC<MovieCardProps> = ({ movie }) => {
   const metaInformation: MovieMetaInformationType = getMovieMetaInformation(
     movie.name
   );
@@ -150,7 +151,7 @@ const MovieDetails: React.FC<MovieCardProps> = ({ movie }) => {
               size="sm"
               borderRadius={0}
               target="_blank"
-              href={`https://youtube.com/results?search_query=${movie.name} trailer`}
+              href={getTrailerLink(movie.name)}
             >
               Watch Trailer
             </Button>
@@ -161,7 +162,7 @@ const MovieDetails: React.FC<MovieCardProps> = ({ movie }) => {
   );
 };
 
-export default withErrorBoundary(MovieDetails, {
+export default withErrorBoundary(MovieDetailsCard, {
   fallbackRender: AppErrorFallBack,
 });
 

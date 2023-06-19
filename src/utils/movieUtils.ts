@@ -38,3 +38,8 @@ export const formatNumberWithCurrency = (
   );
   return nf.format(amount);
 };
+
+export const getTrailerLink = (movieName: string) =>
+  `https://youtube.com/results?search_query=${encodeURIComponent(
+    `${movieName} trailer`
+  )}`;

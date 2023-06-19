@@ -18,7 +18,7 @@ const MoviesGridLayout: React.FC<MoviesGridLayoutProps> = ({
   error,
 }) => {
   const gridRef = useRef<HTMLDivElement>(null);
-  const { isTopVisible, isBottomVisible, onScrollUp, onScrollDown } =
+  const { isTopVisible, isBottomVisible, triggerScrollDown, triggerScrollUp } =
     useMovieListScroll(gridRef.current!);
   const hasMovies = movies.length > 0;
 
@@ -28,8 +28,8 @@ const MoviesGridLayout: React.FC<MoviesGridLayoutProps> = ({
         <Flex h="full" gap={3} pos="relative" pb={4} px={2}>
           {hasMovies && (
             <SideNav
-              onScrollDown={onScrollDown}
-              onScrollUp={onScrollUp}
+              onScrollDown={triggerScrollDown}
+              onScrollUp={triggerScrollUp}
               isTopVisible={isTopVisible}
               isBottomVisible={isBottomVisible}
             />

@@ -44,7 +44,7 @@ const NavBar = () => {
             >
               <Box display={{ base: 'block', md: 'block' }}>
                 <Link href="/" passHref>
-                  <ChakraLink color="white">
+                  <ChakraLink color="white" _focus={{ outline: 'none' }}>
                     <Logo />
                   </ChakraLink>
                 </Link>

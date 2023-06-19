@@ -1,25 +1,37 @@
-import { render, screen } from '@testing-library/react';
-import quotes from 'data/quotes.json';
+import { render } from '@testing-library/react';
 import QuoteCard from './QuoteCard';
 
 describe('<QuoteCard />', function () {
-  test('Renders QuoteCard without crash', () => {
-    render(<QuoteCard quote={quotes[0]} />);
-    expect(
-      screen.getByText(
-        /Sauron's wrath will be terrible, his retribution swift/i
-      )
-    ).toBeInTheDocument();
-    expect(screen.getByText(/- Unknown/i)).toBeInTheDocument();
+  test('renders the quote and characters name correctly', () => {
+    const quote = {
+      dialog: 'I am your father',
+      _id: '5cd96e05de30eff6ebcce9ba',
+      movie: '5cd95395de30eff6ebccde5b',
+      character: '5cd99d4bde30eff6ebccfea0',
+      id: '5cd96e05de30eff6ebcce9ba',
+    };
+    const charactersName = 'Darth Vader';
+
+    const { getByText } = render(
+      <QuoteCard quote={quote} charactersName={charactersName} />
+    );
+
+    expect(getByText(quote.dialog)).toBeInTheDocument();
+    expect(getByText(`- ${charactersName}`)).toBeInTheDocument();
   });
 
-  test(`Renders movie character's name instead of Unknown`, () => {
-    render(<QuoteCard quote={quotes[0]} charactersName="Adanel" />);
-    expect(
-      screen.getByText(
-        /Sauron's wrath will be terrible, his retribution swift/i
-      )
-    ).toBeInTheDocument();
-    expect(screen.getByText(/- Adanel/i)).toBeInTheDocument();
+  test('renders the quote with the default "Unknown" characters name when not provided', () => {
+    const quote = {
+      dialog: 'I am your father',
+      _id: '5cd96e05de30eff6ebcce9ba',
+      movie: '5cd95395de30eff6ebccde5b',
+      character: '5cd99d4bde30eff6ebccfea0',
+      id: '5cd96e05de30eff6ebcce9ba',
+    };
+
+    const { getByText } = render(<QuoteCard quote={quote} />);
+
+    expect(getByText(quote.dialog)).toBeInTheDocument();
+    expect(getByText('- Unknown')).toBeInTheDocument();
   });
 });

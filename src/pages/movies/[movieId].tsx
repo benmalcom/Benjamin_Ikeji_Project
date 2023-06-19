@@ -13,14 +13,15 @@ import { MdOutlineKeyboardBackspace } from 'react-icons/md';
 import { FlexColumn } from 'components/common';
 import ErrorPane from 'components/common/ErrorPane';
 import {
-  MovieDetails,
-  MovieDetailsSkeleton,
+  MovieDetailsCard,
+  MovieDetailsCardSkeleton,
   CharactersGridLayout,
 } from 'components/movieDetails';
 import QuotesDrawer from 'components/movieDetails/quotes/QuotesDrawer';
 import useFetchCharacters from 'hooks/useCharacters';
 import { useFetchMovieById } from 'hooks/useMovies';
 import { CharacterType } from 'types/character';
+
 const FETCH_LIMIT = 15;
 
 const Details = () => {
@@ -59,8 +60,9 @@ const Details = () => {
   );
 
   useEffect(() => {
-    if (charactersData.docs)
+    if (charactersData.docs) {
       setCharacters(prevChars => [...prevChars, ...charactersData.docs]);
+    }
   }, [charactersData]);
 
   const handleLoadMore = () => {
@@ -94,9 +96,9 @@ const Details = () => {
       </Box>
       <VStack w="full" spacing={16} h="full" bg="blackAlpha.900">
         <>
-          {(isLoadingMovie || !isRouterReady) && <MovieDetailsSkeleton />}
-          {!isLoadingMovie && !movieError && movieData.docs.length > 0 && (
-            <MovieDetails movie={movieData.docs[0]} />
+          {(isLoadingMovie || !isRouterReady) && <MovieDetailsCardSkeleton />}
+          {!isLoadingMovie && !movieError && movieData?.docs.length > 0 && (
+            <MovieDetailsCard movie={movieData.docs[0]} />
           )}
           {movieError && (
             <ErrorPane
@@ -105,7 +107,7 @@ const Details = () => {
             />
           )}
 
-          {!!movieData && (
+          {movieData && (
             <FlexColumn w="full">
               <Flex
                 align="center"
@@ -130,8 +132,9 @@ const Details = () => {
                         colorScheme="orange"
                         variant="link"
                         onClick={() => trigger()}
+                        fontSize={{ base: 'sm', md: 'md' }}
                       >
-                        See Quotes
+                        See movie quotes
                       </Button>
                     )}
                     movieId={movieId as string}
