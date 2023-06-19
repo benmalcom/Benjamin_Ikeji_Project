@@ -33,7 +33,7 @@ const MovieDetails: React.FC<MovieCardProps> = ({ movie }) => {
   );
   const itemsForDisplay = getKeyValuesForDisplay(movie);
   return (
-    <FlexColumn gap={10} mt={10} px={{ base: 3, lg: 'unset' }} w="full">
+    <FlexColumn gap={10} mt={10} w="full">
       <FlexColumn gap={3}>
         <Heading fontSize={{ base: '3xl', lg: '4xl', xl: '5xl' }} color="white">
           {movie.name}
@@ -59,7 +59,7 @@ const MovieDetails: React.FC<MovieCardProps> = ({ movie }) => {
           loading="lazy"
           _hover={{ opacity: 0.9 }}
         />
-        <FlexColumn flex={1} px={{ base: 4, md: 0, lg: 5 }} gap={3}>
+        <FlexColumn flex={1} px={{ base: 6, md: 0, lg: 5 }} gap={3}>
           <Flex gap={5} align="center">
             <UnorderedList display="flex" ml={0}>
               {[
@@ -83,7 +83,7 @@ const MovieDetails: React.FC<MovieCardProps> = ({ movie }) => {
               {metaInformation.categories.map((item, index) => (
                 <Tag
                   key={index}
-                  size={{ base: 'sm', md: 'md' }}
+                  size="sm"
                   borderRadius="full"
                   variant="outline"
                   px={4}
