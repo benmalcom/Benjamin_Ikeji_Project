@@ -1,0 +1,66 @@
+[
+  {
+    "name": "The Lord of the Rings Series",
+    "poster": "series1.jpg",
+    "searchableTags": ["Lord", "Ring", "Series"],
+    "categories": ["Action", "Adventure"],
+    "caption": "This series brings to screens for the very first time the heroic legends of the fabled Second Age of Middle-earth's history. This epic drama is set thousands of years before the events of J.R.R.",
+    "year": 2001
+  },
+  {
+    "name": "The Hobbit Series",
+    "poster": "default.png",
+    "searchableTags": ["Hobbit", "Series"],
+    "categories": ["Action", "Adventure"],
+    "caption": "The Hobbit is a series of three epic high fantasy adventure films directed by Peter Jackson. The films are subtitled An Unexpected Journey, The Desolation of Smaug, and The Battle of the Five Armies.",
+    "year": 2012
+  },
+  {
+    "name": "The Unexpected Journey",
+    "poster": "part4.jpg",
+    "searchableTags": ["Unexpected", "Journey"],
+    "categories": ["Action", "Adventure"],
+    "caption": "Bilbo Baggins, a hobbit, is persuaded into accompanying a wizard and a group of dwarves on a journey to reclaim the city of Erebor and all its riches from the dragon Smaug.",
+    "year": 2012
+  },
+  {
+    "name": "The Desolation of Smaug",
+    "poster": "part5.jpg",
+    "searchableTags": ["Desolation", "Smaug"],
+    "categories": ["Action", "Adventure"],
+    "caption": "Bilbo Baggins, a hobbit, and his companions face great dangers on their journey to Laketown. Soon, they reach the Lonely Mountain, where Bilbo comes face-to-face with the fearsome dragon Smaug.",
+    "year": 2013
+  },
+  {
+    "name": "The Battle of the Five Armies",
+    "poster": "part6.jpg",
+    "searchableTags": ["Battle", "Five", "Armies"],
+    "categories": ["Action", "Adventure"],
+    "caption": "Bilbo fights against a number of enemies to save the life of his Dwarf friends and protects the Lonely Mountain after a conflict arises.",
+    "year": 2014
+  },
+  {
+    "name": "The Two Towers",
+    "poster": "part2.jpg",
+    "searchableTags": ["Two", "Towers"],
+    "categories": ["Action", "Adventure"],
+    "caption": "Frodo and Sam arrive in Mordor with the help of Gollum. A number of new allies join their former companions to defend Isengard as Saruman launches an assault from his domain.",
+    "year": 2002
+  },
+  {
+    "name": "The Fellowship of the Ring",
+    "poster": "part1.jpg",
+    "searchableTags": ["Fellowship", "Ring"],
+    "categories": ["Action", "Adventure"],
+    "caption": "A young hobbit, Frodo, who has found the One Ring that belongs to the Dark Lord Sauron, begins his journey with eight companions to Mount Doom, the only place where it can be destroyed.",
+    "year": 2001
+  },
+  {
+    "name": "The Return of the King",
+    "poster": "part3.jpg",
+    "searchableTags": ["Return", "King"],
+    "categories": ["Action", "Adventure"],
+    "caption": "The former Fellowship members prepare for the final battle. While Frodo and Sam approach Mount Doom to destroy the One Ring, they follow Gollum, unaware of the path he is leading them to.",
+    "year": 2003
+  }
+]
