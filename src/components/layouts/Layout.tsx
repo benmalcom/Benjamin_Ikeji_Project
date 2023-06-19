@@ -1,5 +1,6 @@
 import { Flex } from '@chakra-ui/react';
 import React from 'react';
+import Footer from './Footer';
 import NavBar from './NavBar';
 
 type LayoutProps = {
@@ -17,6 +18,7 @@ export const MainLayout: React.FC<LayoutProps> = ({ children }) => {
       >
         {children}
       </Flex>
+      <Footer />
     </Flex>
   );
 };

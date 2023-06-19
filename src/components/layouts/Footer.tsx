@@ -13,7 +13,7 @@ const Footer = () => (
     w="full"
     minH="70px"
     boxSizing="border-box"
-    bg="white"
+    bg="blackAlpha.500"
     borderTop="0.5px solid"
     borderTopColor="gray.200"
   >
@@ -25,7 +25,7 @@ const Footer = () => (
         h="full"
       >
         <Text fontSize="sm" color="subtle">
-          &copy; {new Date().getFullYear()} Gift Bay. All rights reserved.
+          &copy; {new Date().getFullYear()} LOTR. All rights reserved.
         </Text>
         <ButtonGroup variant="ghost">
           <IconButton
