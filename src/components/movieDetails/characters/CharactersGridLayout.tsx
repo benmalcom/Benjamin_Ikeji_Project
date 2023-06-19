@@ -11,7 +11,7 @@ type CharactersGirdLayoutProps = {
   onLoadMore(): void;
   loading?: boolean;
   hasMore?: boolean;
-  error: string | null;
+  error?: string;
 };
 const CharactersGirdLayout: React.FC<CharactersGirdLayoutProps> = ({
   characters,

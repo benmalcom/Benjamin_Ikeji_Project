@@ -6,7 +6,7 @@ const Footer = () => (
     minH="70px"
     boxSizing="border-box"
     bg="blackAlpha.500"
-    borderTop="0.5px solid"
+    borderTop="0.1px solid"
     borderTopColor="orange.400"
   >
     <Container as="footer" role="contentinfo" maxW="7xl" h="full">

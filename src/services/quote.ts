@@ -1,14 +1,12 @@
-import { AxiosResponse } from 'axios';
 import { createRequest } from 'services/http';
 import { QuotesApiResponse } from 'types/quote';
 
 export const getMovieQuotes = async (
-  params: Record<string, unknown>,
-  signal?: AbortSignal
-): Promise<AxiosResponse<QuotesApiResponse>> => {
-  return await createRequest({
-    url: '/quote',
+  movieId: string,
+  params?: Record<string, unknown>
+): Promise<QuotesApiResponse> =>
+  await createRequest({
+    url: `/movie/${movieId}/quote`,
     method: 'get',
-    signal,
-  });
-};
+    params,
+  }).then(response => response.data);

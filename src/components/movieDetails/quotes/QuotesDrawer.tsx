@@ -8,7 +8,9 @@ import {
   DrawerCloseButton,
 } from '@chakra-ui/react';
 import React, { useEffect, useMemo, useState } from 'react';
+import useFetchCharacters from 'hooks/useCharacters';
 import useFetchQuotes from 'hooks/useQuotes';
+import { CharacterType } from 'types/character';
 import { QuoteType } from 'types/quote';
 import QuotesGridLayout from './QuotesGridLayout';
 const FETCH_LIMIT = 15;
@@ -22,6 +24,8 @@ const QuotesDrawer: React.FC<CharactersGirdLayoutProps> = ({
   movieId,
 }) => {
   const [page, setPage] = useState(1);
+  const [characters, setCharacters] = useState<CharacterType[]>([]);
+
   const {
     data: quotesData,
     loading: isLoadingQuotes,
@@ -31,6 +35,9 @@ const QuotesDrawer: React.FC<CharactersGirdLayoutProps> = ({
     page,
     limit: FETCH_LIMIT,
   });
+
+  // Fetch all chars for quotes
+  const { data: charactersData } = useFetchCharacters();
 
   const [quotes, setQuotes] = useState<QuoteType[]>([]);
   const { isOpen, onClose, onToggle } = useDisclosure();
@@ -52,6 +59,11 @@ const QuotesDrawer: React.FC<CharactersGirdLayoutProps> = ({
       setQuotes(prevQuotes => prevQuotes.concat(quotesData.docs));
   }, [quotesData]);
 
+  useEffect(() => {
+    if (charactersData.docs)
+      setCharacters(prevChars => [...prevChars, ...charactersData.docs]);
+  }, [charactersData]);
+
   const handleLoadMore = () => {
     if (!isLoadingQuotes && hasMoreQuotes) {
       setPage(page => page + 1);
@@ -59,28 +71,40 @@ const QuotesDrawer: React.FC<CharactersGirdLayoutProps> = ({
     return;
   };
 
+  const charactersById = characters.reduce((acc, character) => {
+    acc[character._id] = character;
+    return acc;
+  }, {} as { [key: string]: CharacterType });
+
   return (
     <>
       {triggerFunc({
         trigger: onToggle,
       })}
-      <Drawer placement="right" onClose={onClose} isOpen={isOpen} size="sm">
+      <Drawer
+        placement="right"
+        onClose={onClose}
+        isOpen={isOpen}
+        size="sm"
+        colorScheme="orange"
+      >
         <DrawerOverlay
           bg="none"
           backdropFilter="auto"
           backdropInvert="80%"
           backdropBlur="2px"
         />
-        <DrawerContent bg="blackAlpha.800" boxShadow="xl">
+        <DrawerContent bg="gray.600" boxShadow="xl">
           <DrawerCloseButton color="white" _focus={{ outline: 'none' }} />
           <DrawerHeader color="white">Quotes from movie</DrawerHeader>
           <DrawerBody>
             <QuotesGridLayout
+              charactersById={charactersById}
               quotes={quotes}
               loading={isLoadingQuotes}
               onLoadMore={handleLoadMore}
               hasMore={hasMoreQuotes}
-              error={quotesError as unknown as string}
+              error={quotesError?.message}
             />
           </DrawerBody>
         </DrawerContent>

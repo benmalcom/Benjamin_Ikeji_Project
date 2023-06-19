@@ -1,8 +1,7 @@
-import { AxiosResponse } from 'axios';
-import { MoviesApiResponse, MovieType } from 'types/movie';
+import { MoviesApiResponse } from 'types/movie';
 import { createRequest } from './http';
 export const getMovies = async (
-  params: Record<string, unknown>
+  params?: Record<string, unknown>
 ): Promise<MoviesApiResponse> =>
   await createRequest({
     url: '/movie',
@@ -10,12 +9,8 @@ export const getMovies = async (
     params,
   }).then(response => response.data);
 
-export const getMovieById = async (
-  id: string,
-  signal?: AbortSignal
-): Promise<AxiosResponse<MovieType>> =>
+export const getMovieById = async (id: string): Promise<MoviesApiResponse> =>
   await createRequest({
     url: `/movie/${id}`,
     method: 'get',
-    signal,
   }).then(response => response.data);

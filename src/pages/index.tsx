@@ -11,7 +11,7 @@ const Home = () => {
       <MoviesGridLayout
         movies={data.docs}
         loading={loading}
-        error={error as unknown as string}
+        error={error?.message}
       />
     </VStack>
   );

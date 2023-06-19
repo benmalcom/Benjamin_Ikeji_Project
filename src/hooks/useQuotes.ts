@@ -1,21 +1,23 @@
-import useAxios from 'axios-hooks';
+import { useQuery } from '@tanstack/react-query';
 import { INITIAL_FETCH_DATA } from 'config/default';
+import { getMovieQuotes } from 'services/quote';
 import { QuotesApiResponse } from 'types/quote';
 
 export const useFetchMovieQuotes = (
   movieId: string,
   params?: Record<string, unknown>
 ) => {
-  const [{ data = INITIAL_FETCH_DATA, loading, error }, refetch] =
-    useAxios<QuotesApiResponse>(
-      {
-        url: `movie/${movieId}/quote`,
-        params,
-      },
-      { manual: true, useCache: false }
-    );
+  const {
+    isLoading,
+    data = INITIAL_FETCH_DATA,
+    error,
+    refetch,
+  } = useQuery<QuotesApiResponse, Error>({
+    queryKey: ['quotes', movieId, params],
+    queryFn: () => getMovieQuotes(movieId, params),
+  });
 
-  return { data, loading, error, fetchQuotes: refetch };
+  return { data, loading: isLoading, error, fetchQuotes: refetch };
 };
 
 export default useFetchMovieQuotes;

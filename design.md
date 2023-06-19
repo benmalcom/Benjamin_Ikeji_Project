@@ -11,6 +11,7 @@ Based on the requirements, the following technology stack was chosen for this pr
 - [React](https://react.dev/)
 - [TypeScript](https://www.typescriptlang.org/)
 - [Chakra UI](https://chakra-ui.com/)
+- [TanStack Query](https://tanstack.com/query/v4)
 - ...and others
 
 ### Project Structure
@@ -61,7 +62,6 @@ Here are some of the decisions taken:
 
 ### Other Considerations
 
-The API has some limitations which needs to be worked around, this might not be good for the performance of the application and experience of the users. For example,
-in the `/quote` endpoints, each quote does not come with the character which made the quote, only the character `id`, with this limitation, the two hacky ways to make it work
-is to either fetch all the characters at once, no pagination and look up each character `id` from the quote or to fetch the characters on demand(infinite scroll) and
-show character names on availability.
+- The API has some limitations which needs to be worked around, for example there's no way to know which character made a quote because each quote object does not come with
+  a character name, just character id. Hence we have to prefetch all the characters and look up the character id of the person who made the quote in other to get their name.
+- There's only one unified character endpoint as each movie does not have an endpoint to fetch its own characters, hence we have to fetch the same characters endpoint for all movies.

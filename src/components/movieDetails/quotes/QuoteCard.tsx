@@ -1,14 +1,13 @@
 import { Text } from '@chakra-ui/react';
 import React from 'react';
 import { FlexColumn, MotionFlexColumn } from 'components/common';
-import { CharacterType } from 'types/character';
 import { QuoteType } from 'types/quote';
 
 type MovieQuoteProps = {
   quote: QuoteType;
-  charactersById?: { [id: string]: CharacterType };
+  charactersName?: string;
 };
-const MovieQuote: React.FC<MovieQuoteProps> = ({ quote, charactersById }) => {
+const MovieQuote: React.FC<MovieQuoteProps> = ({ quote, charactersName }) => {
   return (
     <MotionFlexColumn
       whileHover={{
@@ -24,10 +23,10 @@ const MovieQuote: React.FC<MovieQuoteProps> = ({ quote, charactersById }) => {
       borderLeftColor="orange.400"
       mb="16px"
     >
-      <FlexColumn w="full" maxH="fit-content">
+      <FlexColumn w="full" maxH="fit-content" gap={3}>
         <Text color="white">{quote.dialog}</Text>
         <Text color="gray.400" textAlign="right" fontSize="sm">
-          -{charactersById?.[quote.character].name ?? 'Unknown'}
+          - {charactersName ?? 'Unknown'}
         </Text>
       </FlexColumn>
     </MotionFlexColumn>

@@ -1,14 +1,11 @@
-import { AxiosResponse } from 'axios';
 import { createRequest } from 'services/http';
 import { CharacterApiResponse } from 'types/character';
 
 export const getMovieCharacters = async (
-  params: Record<string, unknown>,
-  signal?: AbortSignal
-): Promise<AxiosResponse<CharacterApiResponse>> => {
-  return await createRequest({
+  params?: Record<string, unknown>
+): Promise<CharacterApiResponse> =>
+  await createRequest({
     url: '/character',
     method: 'get',
-    signal,
-  });
-};
+    params,
+  }).then(response => response.data);

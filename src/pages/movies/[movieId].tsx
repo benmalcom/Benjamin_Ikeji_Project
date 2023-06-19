@@ -48,8 +48,7 @@ const Details = () => {
 
   useEffect(() => {
     if (!isRouterReady) return;
-    fetchMovieById();
-  }, [fetchMovieById, isRouterReady]);
+  }, [isRouterReady]);
 
   const hasMoreCharacters = useMemo(
     () =>
@@ -89,65 +88,67 @@ const Details = () => {
               outline: 'none',
             }}
           >
-            Go Home
+            Back to Movies
           </Button>
         </Link>
       </Box>
       <VStack w="full" spacing={16} h="full" bg="blackAlpha.900">
-        {(isLoadingMovie || !isRouterReady) && <MovieDetailsSkeleton />}
-        {!isLoadingMovie && !movieError && movieData.docs.length > 0 && (
-          <MovieDetails movie={movieData.docs[0]} />
-        )}
-        {movieError && (
-          <ErrorPane
-            error={movieError as unknown as string}
-            cta={<Button onClick={handleFetchMovie}>Try again</Button>}
-          />
-        )}
-
-        {!!movieData && (
-          <FlexColumn w="full">
-            <Flex
-              align="center"
-              h="50px"
-              borderLeft="2px solid"
-              borderLeftColor="orange.500"
-              w="full"
-              mb={16}
-              px={3}
-              justify="space-between"
-            >
-              <Heading fontSize="2xl" textAlign="left" color="white">
-                Characters{' '}
-              </Heading>
-              {isRouterReady && (
-                <QuotesDrawer
-                  triggerFunc={({ trigger }) => (
-                    <Button
-                      _focus={{
-                        outline: 'none',
-                      }}
-                      colorScheme="orange"
-                      variant="link"
-                      onClick={() => trigger()}
-                    >
-                      See Quotes
-                    </Button>
-                  )}
-                  movieId={movieId as string}
-                />
-              )}
-            </Flex>
-
-            <CharactersGridLayout
-              characters={characters}
-              loading={isLoadingCharacters}
-              onLoadMore={handleLoadMore}
-              hasMore={hasMoreCharacters}
-              error={charactersError as unknown as string}
+        <>
+          {(isLoadingMovie || !isRouterReady) && <MovieDetailsSkeleton />}
+          {!isLoadingMovie && !movieError && movieData.docs.length > 0 && (
+            <MovieDetails movie={movieData.docs[0]} />
+          )}
+          {movieError && (
+            <ErrorPane
+              error={movieError.message}
+              cta={<Button onClick={handleFetchMovie}>Try again</Button>}
             />
-          </FlexColumn>
-        )}
+          )}
+
+          {!!movieData && (
+            <FlexColumn w="full">
+              <Flex
+                align="center"
+                h="50px"
+                borderLeft="2px solid"
+                borderLeftColor="orange.500"
+                w="full"
+                mb={16}
+                px={3}
+                justify="space-between"
+              >
+                <Heading fontSize="2xl" textAlign="left" color="white">
+                  Characters{' '}
+                </Heading>
+                {isRouterReady && (
+                  <QuotesDrawer
+                    triggerFunc={({ trigger }) => (
+                      <Button
+                        _focus={{
+                          outline: 'none',
+                        }}
+                        colorScheme="orange"
+                        variant="link"
+                        onClick={() => trigger()}
+                      >
+                        See Quotes
+                      </Button>
+                    )}
+                    movieId={movieId as string}
+                  />
+                )}
+              </Flex>
+
+              <CharactersGridLayout
+                characters={characters}
+                loading={isLoadingCharacters}
+                onLoadMore={handleLoadMore}
+                hasMore={hasMoreCharacters}
+                error={charactersError?.message}
+              />
+            </FlexColumn>
+          )}
+        </>
       </VStack>
     </Container>
   );
