@@ -72,6 +72,10 @@ const CharacterInfo: React.FC<CharacterInfoProps> = ({
   };
   const charactersById = { [character._id]: character };
   const attributes = getCharacterAttributes(character);
+
+  console.log('isLoadingQuotes ', isLoadingQuotes);
+  console.log('quotes ', quotes);
+
   return (
     <>
       {triggerFunc({

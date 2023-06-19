@@ -3,10 +3,12 @@ import { mode } from '@chakra-ui/theme-tools';
 
 const styles = {
   global: (props: Record<string, unknown>) => ({
+    html: {
+      scrollBehavior: 'smooth',
+    },
     'html, body': {
       height: '100%',
       width: '100%',
-      scrollBehavior: 'smooth',
     },
     body: {
       margin: 0,

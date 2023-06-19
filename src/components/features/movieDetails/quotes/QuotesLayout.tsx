@@ -1,5 +1,4 @@
-import { Container, Box } from '@chakra-ui/react';
-import { css } from '@emotion/react';
+import { Container, Grid } from '@chakra-ui/react';
 import React, { useRef } from 'react';
 import {
   ErrorPane,
@@ -34,17 +33,13 @@ const QuotesLayout: React.FC<QuotesLayoutProps> = ({
   return (
     <FlexColumn h="full" gap={6} pos="relative" w="full">
       <Container maxW="7xl" alignItems="center" px={0} as={FlexColumn}>
-        <Box
-          css={css`
-            width: 100%;
-            column-count: 2;
-            column-width: 460px;
-            gap: 24px;
-            &:not(:first-child) {
-              margin-top: 30px;
-            }
-          `}
+        <Grid
           w="full"
+          gridTemplateColumns={{
+            base: '100%',
+          }}
+          justifyContent="center"
+          h="fit-content"
         >
           {quotes.length > 0 &&
             quotes.map(quote => (
@@ -55,7 +50,7 @@ const QuotesLayout: React.FC<QuotesLayoutProps> = ({
               />
             ))}
           {loading && <QuoteCardSkeleton count={15} />}
-        </Box>
+        </Grid>
       </Container>
       {!loading && quotes.length === 0 && !error && (
         <InfoPane message="No quotes available for this selection." />

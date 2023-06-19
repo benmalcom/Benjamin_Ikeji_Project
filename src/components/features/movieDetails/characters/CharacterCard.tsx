@@ -37,7 +37,7 @@ const CharacterCard: React.FC<CharacterCardProps> = ({ character }) => {
           <Text fontSize="xs" color="gray.200">
             Race:
           </Text>
-          <Text fontSize="sm" color="orange.400" noOfLines={1}>
+          <Text fontSize="sm" color="gray.100" noOfLines={1}>
             {character.race}
           </Text>
         </Flex>

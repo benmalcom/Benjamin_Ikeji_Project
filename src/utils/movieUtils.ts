@@ -56,10 +56,6 @@ export const getCharacterAttributes = (character: CharacterType) => {
       value: character.race,
     },
     {
-      label: 'Gender',
-      value: character.gender,
-    },
-    {
       label: 'Birth',
       value: character.birth,
     },

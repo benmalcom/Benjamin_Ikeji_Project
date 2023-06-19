@@ -32,10 +32,10 @@ export const useFetchCharacterQuotes = (
   params?: Record<string, unknown>
 ) => {
   const {
-    isLoading,
-    isFetching,
+    isInitialLoading,
     data = INITIAL_FETCH_DATA,
     error,
+    status,
     refetch,
   } = useQuery<QuotesApiResponse, Error>({
     queryKey: ['characterQuotes', characterId, params],
@@ -45,7 +45,7 @@ export const useFetchCharacterQuotes = (
 
   return {
     data,
-    loading: isLoading || isFetching,
+    loading: isInitialLoading || status === 'loading',
     error,
     fetchQuotes: refetch,
   };
