@@ -39,7 +39,7 @@ const MoviesGridLayout: React.FC<MoviesGridLayoutProps> = ({
             ref={gridRef}
             w="full"
             gridTemplateColumns={{
-              base: '90%',
+              base: '97%',
               md: 'repeat(2,minmax(0,1fr))',
             }}
             columnGap={8}
