@@ -13,7 +13,7 @@ const Footer = () => (
     <Container as="footer" role="contentinfo" maxW="7xl" h="full">
       <Flex
         gap={{ base: '4', md: '5' }}
-        justify="space-between"
+        justify={{ base: 'center', lg: 'flex-start' }}
         align="center"
         h="full"
       >

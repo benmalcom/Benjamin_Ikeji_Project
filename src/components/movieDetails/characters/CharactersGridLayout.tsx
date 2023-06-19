@@ -1,6 +1,6 @@
 import { Grid, Container, Box } from '@chakra-ui/react';
 import React, { useRef } from 'react';
-import { FlexColumn } from 'components/common';
+import { ErrorPane, FlexColumn } from 'components/common';
 import useIntersectionObserver from 'hooks/useIntersectionObserver';
 import { CharacterType } from 'types/character';
 import CharacterCard from './CharacterCard';
@@ -24,7 +24,7 @@ const CharactersGirdLayout: React.FC<CharactersGirdLayoutProps> = ({
   useIntersectionObserver(bottomRef, onLoadMore, loading);
 
   return (
-    <FlexColumn h="full" gap={6} pos="relative" w="full">
+    <FlexColumn h="full" gap={6} pos="relative" w="full" align="center">
       <Container
         maxW="7xl"
         h="full"
@@ -52,6 +52,12 @@ const CharactersGirdLayout: React.FC<CharactersGirdLayoutProps> = ({
           {loading && <CharacterCardSkeleton count={6} />}
         </Grid>
       </Container>
+      {!loading && !!error && (
+        <ErrorPane
+          error="An error occured while fetching characters, please refresh browser."
+          w="fit-content"
+        />
+      )}
       {!loading && hasMore && !error && <Box ref={bottomRef} mb={6} h="10px" />}
     </FlexColumn>
   );

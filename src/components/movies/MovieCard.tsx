@@ -7,6 +7,7 @@ import {
   Tag,
   TagLabel,
   Icon,
+  Link as ChakraLink,
 } from '@chakra-ui/react';
 import Link from 'next/link';
 import React from 'react';
@@ -51,9 +52,19 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
         _hover={{ opacity: 0.9 }}
       />
       <FlexColumn flex={1} pl={{ base: 5, md: 0, lg: 5 }} gap={3}>
-        <Heading color="white" as="h4" size="md">
-          {movie.name}
-        </Heading>
+        <Link href={`/movies/${movie._id}`} passHref>
+          <ChakraLink>
+            <Heading
+              color="white"
+              as="h4"
+              size="md"
+              _hover={{ color: 'gray.300' }}
+            >
+              {movie.name}
+            </Heading>
+          </ChakraLink>
+        </Link>
+
         <Heading color="orange" as="h6" size="xs" textTransform="uppercase">
           {metaInformation.categories.join(', ')}
         </Heading>

@@ -13,7 +13,7 @@ export const useFetchMovieQuotes = (
     error,
     refetch,
   } = useQuery<QuotesApiResponse, Error>({
-    queryKey: ['quotes', movieId, params],
+    queryKey: ['movieQuotes', movieId, params],
     queryFn: () => getMovieQuotes(movieId, params),
   });
 

@@ -34,6 +34,7 @@ const MovieCharacter: React.FC<MovieCharacterProps> = ({ character }) => {
               {character.race}
             </Text>
           </Flex>
+
           <Link
             fontSize="sm"
             display="flex"
@@ -44,7 +45,7 @@ const MovieCharacter: React.FC<MovieCharacterProps> = ({ character }) => {
             w="fit-content"
             gap={1}
           >
-            More info
+            See wiki
           </Link>
         </FlexColumn>
       </Flex>

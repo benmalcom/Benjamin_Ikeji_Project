@@ -51,11 +51,16 @@ const CharactersGirdLayout: React.FC<CharactersGirdLayoutProps> = ({
         </Box>
       </Container>
       {!loading && quotes.length === 0 && !error && (
-        <InfoPane message="No quotes available for this movie" />
+        <InfoPane message="No quotes available for this selection." />
       )}
-      {!loading && !!error && <ErrorPane error={error} />}
+      {!loading && !!error && (
+        <ErrorPane
+          error="An error occured while fetching characters, please refresh browser."
+          w="fit-content"
+        />
+      )}
       {!loading && hasMore && (
-        <Box ref={bottomRef} mb={6} h="70px" border="2px solid orange" />
+        <Box ref={bottomRef} mb={6} h="70px" border="2px solid blackAlpha" />
       )}
     </FlexColumn>
   );

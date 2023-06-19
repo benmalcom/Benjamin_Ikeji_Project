@@ -16,7 +16,6 @@ const useIntersectionObserver = (
       const [entry] = entries;
       if (entry.isIntersecting || entry.intersectionRatio > 0) {
         if (isRunningProcess) {
-          console.log('Stop observing');
           observer.unobserve(entry.target);
           return;
         }

@@ -8,7 +8,7 @@ import {
 import Link from 'next/link';
 import React from 'react';
 import { IconType } from 'react-icons';
-import { FiHome } from 'react-icons/fi';
+import { FiList } from 'react-icons/fi';
 import { Logo } from 'components/common';
 
 interface LinkItemProps {
@@ -18,7 +18,7 @@ interface LinkItemProps {
   visible: boolean;
 }
 const LinkItems: Array<LinkItemProps> = [
-  { name: 'Home', icon: FiHome, path: '/', visible: true },
+  { name: 'Movies', icon: FiList, path: '/', visible: true },
 ];
 
 const NavBar = () => {
@@ -59,6 +59,7 @@ const NavBar = () => {
                       colorScheme="white"
                       color="white"
                       leftIcon={<item.icon />}
+                      iconSpacing={1}
                     >
                       {item.name}
                     </Button>

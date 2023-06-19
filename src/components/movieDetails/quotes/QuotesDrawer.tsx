@@ -9,7 +9,7 @@ import {
 } from '@chakra-ui/react';
 import React, { useEffect, useMemo, useState } from 'react';
 import useFetchCharacters from 'hooks/useCharacters';
-import useFetchQuotes from 'hooks/useQuotes';
+import useFetchMovieQuotes from 'hooks/useQuotes';
 import { CharacterType } from 'types/character';
 import { QuoteType } from 'types/quote';
 import QuotesGridLayout from './QuotesGridLayout';
@@ -31,7 +31,7 @@ const QuotesDrawer: React.FC<CharactersGirdLayoutProps> = ({
     loading: isLoadingQuotes,
     error: quotesError,
     fetchQuotes,
-  } = useFetchQuotes(movieId, {
+  } = useFetchMovieQuotes(movieId, {
     page,
     limit: FETCH_LIMIT,
   });
