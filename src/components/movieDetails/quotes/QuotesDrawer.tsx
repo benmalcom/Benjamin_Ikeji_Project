@@ -59,9 +59,6 @@ const QuotesDrawer: React.FC<CharactersGirdLayoutProps> = ({
     return;
   };
 
-  console.log('hasMoreQuotes ', hasMoreQuotes);
-  console.log('page ', page);
-
   return (
     <>
       {triggerFunc({
