@@ -5,6 +5,7 @@ import {
   DrawerHeader,
   DrawerBody,
   useDisclosure,
+  DrawerCloseButton,
 } from '@chakra-ui/react';
 import React, { useEffect, useMemo, useState } from 'react';
 import useFetchQuotes from 'hooks/useQuotes';
@@ -74,6 +75,7 @@ const QuotesDrawer: React.FC<CharactersGirdLayoutProps> = ({
           backdropBlur="2px"
         />
         <DrawerContent bg="blackAlpha.800" boxShadow="xl">
+          <DrawerCloseButton color="white" _focus={{ outline: 'none' }} />
           <DrawerHeader color="white">Quotes from movie</DrawerHeader>
           <DrawerBody>
             <QuotesGridLayout
