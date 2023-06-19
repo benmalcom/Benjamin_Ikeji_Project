@@ -59,16 +59,17 @@ const MoviesGridLayout: React.FC<MoviesGridLayoutProps> = ({
         </Flex>
         {error && !loading && (
           <ErrorPane
+            px={2}
             error="Problem fetching movies, please try again."
-            ml={{ base: '50px', md: '100px' }}
-            w={{ base: 'calc(100% - 50px)', md: 'calc(100% - 100px)' }}
-            flexDirection="column"
+            ml={{ base: 0, md: '100px' }}
+            w={{ base: 'full', md: 'calc(100% - 100px)' }}
+            flexDirection={{ base: 'column', md: 'row' }}
             alignItems="center"
             cta={
               <Button
                 onClick={handleFetchMovies}
                 ml={5}
-                colorScheme="orange"
+                colorScheme="red"
                 size="sm"
               >
                 Try again

@@ -24,6 +24,7 @@ The project structure was organized and modular to promote code reusability and 
 - src/
   - components/
     - common/
+    - features/
     - layouts
     - ...
   - config/

@@ -12,6 +12,7 @@ const customJestConfig = {
   testPathIgnorePatterns: ['<rootDir>/.next/', '<rootDir>/node_modules/'],
   // if using TypeScript with a baseUrl set to the root directory then you need the below for alias' to work
   moduleDirectories: ['node_modules', 'src'],
+  modulePaths: ['src'],
   moduleNameMapper: {
     '^components(.*)$': '<rootDir>/src/components$1',
     '^pages(.*)$': '<rootDir>/src/pages$1',

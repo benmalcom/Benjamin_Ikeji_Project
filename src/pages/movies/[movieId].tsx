@@ -9,6 +9,7 @@ import {
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useMemo, useState } from 'react';
+import { GoQuote } from 'react-icons/go';
 import { MdOutlineKeyboardBackspace } from 'react-icons/md';
 import { FlexColumn } from 'components/common';
 import ErrorPane from 'components/common/ErrorPane';
@@ -100,7 +101,7 @@ const Details = () => {
           {!isLoadingMovie && !movieError && movieData?.docs.length > 0 && (
             <MovieDetailsCard movie={movieData.docs[0]} />
           )}
-          {movieError && (
+          {movieError && !isLoadingMovie && (
             <ErrorPane
               mt={8}
               error="An error occurred while fetching this movie."
@@ -130,7 +131,7 @@ const Details = () => {
                 justify="space-between"
               >
                 <Heading fontSize="2xl" textAlign="left" color="white">
-                  Characters{' '}
+                  Characters
                 </Heading>
                 {isRouterReady && (
                   <QuotesDrawer
@@ -143,6 +144,8 @@ const Details = () => {
                         variant="link"
                         onClick={() => trigger()}
                         fontSize={{ base: 'sm', md: 'md' }}
+                        leftIcon={<GoQuote />}
+                        iconSpacing={1}
                       >
                         See movie quotes
                       </Button>

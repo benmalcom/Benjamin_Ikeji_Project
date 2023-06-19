@@ -29,9 +29,9 @@ export const ErrorPane: React.FC<ErrorPaneProps> = ({
     justifyContent="center"
     {...props}
   >
-    <Flex>
-      <AlertIcon mr={2} />
-      <AlertTitle>Error</AlertTitle>
+    <Flex w="fit-content" justify="flex-start">
+      <AlertIcon mr={1} />
+      <AlertTitle>Error:</AlertTitle>
     </Flex>
     <AlertDescription>{error}</AlertDescription>
     {!!cta && cta}

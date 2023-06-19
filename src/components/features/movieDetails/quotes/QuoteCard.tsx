@@ -15,6 +15,7 @@ const MovieQuote: React.FC<MovieQuoteProps> = ({ quote, charactersName }) => {
         scale: 1.01,
       }}
       shadow="md"
+      minH="80px"
       h="fit-content"
       pos="relative"
       bg="gray.800"
@@ -23,7 +24,7 @@ const MovieQuote: React.FC<MovieQuoteProps> = ({ quote, charactersName }) => {
       borderLeftColor="orange.400"
       mb="16px"
     >
-      <FlexColumn w="full" maxH="fit-content" gap={3}>
+      <FlexColumn w="full" h="full" gap={3}>
         <Text color="white">{quote.dialog}</Text>
         <Text color="gray.400" textAlign="right" fontSize="sm">
           - {charactersName ?? 'Unknown'}

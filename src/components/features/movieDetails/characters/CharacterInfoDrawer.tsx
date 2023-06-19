@@ -10,10 +10,16 @@ import {
   DrawerHeader,
   DrawerBody,
   Tag,
+  Button,
 } from '@chakra-ui/react';
-import React from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
+import { FlexColumn } from 'components/common';
+import QuotesGridLayout from 'components/features/movieDetails/quotes/QuotesGridLayout';
+import { useFetchCharacterQuotes } from 'hooks/useQuotes';
 import { CharacterType } from 'types/character';
+import { QuoteType } from 'types/quote';
 import { getCharacterAttributes } from 'utils/movieUtils';
+const FETCH_LIMIT = 15;
 
 type CharacterInfoProps = {
   character: CharacterType;
@@ -24,7 +30,47 @@ const CharacterInfo: React.FC<CharacterInfoProps> = ({
   triggerFunc,
 }) => {
   const { isOpen, onClose, onToggle } = useDisclosure();
+  const [page, setPage] = useState(1);
+  const [quotes, setQuotes] = useState<QuoteType[]>([]);
+  const [isClicked, setIsClicked] = useState(false);
 
+  const {
+    data: quotesData,
+    loading: isLoadingQuotes,
+    error: quotesError,
+    fetchQuotes,
+  } = useFetchCharacterQuotes(character._id, {
+    page,
+    limit: FETCH_LIMIT,
+  });
+
+  // Fetch all quotes for character
+
+  const hasMoreQuotes = useMemo(
+    () =>
+      quotes.length > 0 &&
+      page * FETCH_LIMIT === quotes.length &&
+      quotes.length < quotesData.total,
+    [quotesData.total, quotes.length, page]
+  );
+
+  useEffect(() => {
+    if (quotesData.docs)
+      setQuotes(prevQuotes => prevQuotes.concat(quotesData.docs));
+  }, [quotesData]);
+
+  const handleFetch = () => {
+    setIsClicked(true);
+    fetchQuotes();
+  };
+  const handleLoadMore = () => {
+    if (!isLoadingQuotes && hasMoreQuotes) {
+      setPage(page => page + 1);
+    }
+    return;
+  };
+
+  const charactersById = { [character._id]: character };
   const attributes = getCharacterAttributes(character);
   return (
     <>
@@ -46,45 +92,71 @@ const CharacterInfo: React.FC<CharacterInfoProps> = ({
           <DrawerCloseButton color="white" _focus={{ outline: 'none' }} />
           <DrawerHeader color="white">{character.name}</DrawerHeader>
           <DrawerBody>
-            {attributes.length > 0 && (
-              <Flex flexWrap="wrap" gap={3} mt={5}>
-                {attributes.map(({ label, value }, index, list) => {
-                  const isLastItem = index === list.length - 1;
-                  return (
-                    <Tag
-                      key={index}
-                      size="sm"
-                      borderRadius="full"
-                      variant="outline"
-                      px={4}
-                      py={2}
-                      as={Flex}
-                      alignItems="center"
-                      gap={1}
-                    >
-                      <Text fontSize="xs" color="gray.300" noOfLines={5}>
-                        {label}:
-                      </Text>
-                      {isLastItem ? (
-                        <Link
-                          fontSize="sm"
-                          href={value}
-                          isExternal
-                          color="blue.400"
-                          w="fit-content"
-                        >
-                          {value}{' '}
-                        </Link>
-                      ) : (
-                        <Text fontSize="sm" color="white" noOfLines={5}>
-                          {value}
+            <FlexColumn gap={10} h="full">
+              {attributes.length > 0 && (
+                <Flex flexWrap="wrap" gap={3} mt={5}>
+                  {attributes.map(({ label, value }, index, list) => {
+                    const isLastItem = index === list.length - 1;
+                    return (
+                      <Tag
+                        key={index}
+                        size="sm"
+                        borderRadius="full"
+                        variant="outline"
+                        px={4}
+                        py={2}
+                        as={Flex}
+                        alignItems="center"
+                        gap={1}
+                      >
+                        <Text fontSize="xs" color="gray.300" noOfLines={5}>
+                          {label}:
                         </Text>
-                      )}
-                    </Tag>
-                  );
-                })}
-              </Flex>
-            )}
+                        {isLastItem ? (
+                          <Link
+                            fontSize="sm"
+                            href={value}
+                            isExternal
+                            color="blue.400"
+                            w="fit-content"
+                          >
+                            {value}{' '}
+                          </Link>
+                        ) : (
+                          <Text fontSize="sm" color="white" noOfLines={5}>
+                            {value}
+                          </Text>
+                        )}
+                      </Tag>
+                    );
+                  })}
+                </Flex>
+              )}
+              <FlexColumn flex={1} gap={6}>
+                {quotes.length === 0 && !isClicked && (
+                  <Button
+                    colorScheme="orange"
+                    size="sm"
+                    width="fit-content"
+                    px={8}
+                    onClick={handleFetch}
+                    mb={2}
+                  >
+                    See quites from {character.name}
+                  </Button>
+                )}
+                {isClicked && (
+                  <QuotesGridLayout
+                    charactersById={charactersById}
+                    quotes={quotes}
+                    loading={isLoadingQuotes}
+                    onLoadMore={handleLoadMore}
+                    hasMore={hasMoreQuotes}
+                    error={quotesError?.message}
+                  />
+                )}
+              </FlexColumn>
+            </FlexColumn>
           </DrawerBody>
         </DrawerContent>
       </Drawer>

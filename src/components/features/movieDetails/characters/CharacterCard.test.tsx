@@ -1,3 +1,4 @@
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render } from '@testing-library/react';
 import CharacterCard from './CharacterCard';
 
@@ -17,8 +18,12 @@ describe('<CharacterCard />', function () {
       hair: '',
     };
 
+    const queryClient = new QueryClient();
+    // Wrap with provider as a result of the CharacterInfoDrawer
     const { getByText, getByRole } = render(
-      <CharacterCard character={character} />
+      <QueryClientProvider client={queryClient}>
+        <CharacterCard character={character} />
+      </QueryClientProvider>
     );
 
     expect(getByText(character.name)).toBeInTheDocument();

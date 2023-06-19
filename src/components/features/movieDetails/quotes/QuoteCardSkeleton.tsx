@@ -11,6 +11,7 @@ const QuoteCardSkeleton: React.FC<QuoteCardSkeletonType> = ({ count }) => (
       <FlexColumn
         key={item}
         shadow="md"
+        minH="80px"
         h="fit-content"
         pos="relative"
         bg="gray.800"
@@ -19,7 +20,7 @@ const QuoteCardSkeleton: React.FC<QuoteCardSkeletonType> = ({ count }) => (
         borderLeftColor="orange.400"
         mb="16px"
       >
-        <FlexColumn w="full" maxH="fit-content" gap={3}>
+        <FlexColumn w="full" h="full" gap={3}>
           <Skeleton h="15px" w="full" />
           <Flex w="full" justify="end">
             <Skeleton h="10px" w="20%" />

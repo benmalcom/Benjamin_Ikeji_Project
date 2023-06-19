@@ -10,3 +10,13 @@ export const getMovieQuotes = async (
     method: 'get',
     params,
   }).then(response => response.data);
+
+export const getCharacterQuotes = async (
+  characterId: string,
+  params?: Record<string, unknown>
+): Promise<QuotesApiResponse> =>
+  await createRequest({
+    url: `/character/${characterId}/quote`,
+    method: 'get',
+    params,
+  }).then(response => response.data);

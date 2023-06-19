@@ -1,4 +1,4 @@
-import { Flex, Heading, Text, Icon, Button } from '@chakra-ui/react';
+import { Flex, Text, Icon, Button } from '@chakra-ui/react';
 import React from 'react';
 import { FaUserCircle } from 'react-icons/fa';
 import { FlexColumn, MotionFlexColumn } from 'components/common';
@@ -20,13 +20,14 @@ const CharacterCard: React.FC<CharacterCardProps> = ({ character }) => {
       pos="relative"
       bg="gray.800"
       p={{ base: 3, md: 4 }}
+      h="90px"
     >
-      <Flex w="full" maxH="fit-content">
+      <Flex w="full" maxH="fit-content" justify="space-between">
         <Icon as={FaUserCircle} boxSize="3em" color="gray.300" />
-        <FlexColumn flex={1} pl={{ base: 5, md: 0, lg: 5 }} gap={1}>
-          <Heading color="white" as="h4" size="md">
+        <FlexColumn h="full" flex={1} pl={{ base: 5, md: 0, lg: 5 }}>
+          <Text color="white" fontSize="md" fontWeight={500} noOfLines={1}>
             {character.name}
-          </Heading>
+          </Text>
           <Flex gap={1} align="center">
             <Text fontSize="xs" color="gray.200" noOfLines={5}>
               Race:

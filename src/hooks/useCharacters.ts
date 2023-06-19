@@ -9,12 +9,18 @@ export const useFetchCharacters = (params?: Record<string, unknown>) => {
     data = INITIAL_FETCH_DATA,
     error,
     refetch,
+    isFetching,
   } = useQuery<CharacterApiResponse, Error>({
     queryKey: ['characters', params],
     queryFn: () => getMovieCharacters(params),
   });
 
-  return { data, loading: isLoading, error, fetchCharacters: refetch };
+  return {
+    data,
+    loading: isLoading || isFetching,
+    error,
+    fetchCharacters: refetch,
+  };
 };
 
 export default useFetchCharacters;
