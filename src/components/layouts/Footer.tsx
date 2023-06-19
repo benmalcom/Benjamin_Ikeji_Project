@@ -7,7 +7,7 @@ const Footer = () => (
     boxSizing="border-box"
     bg="blackAlpha.500"
     borderTop="0.5px solid"
-    borderTopColor="gray.200"
+    borderTopColor="orange.400"
   >
     <Container as="footer" role="contentinfo" maxW="7xl" h="full">
       <Flex
@@ -16,7 +16,7 @@ const Footer = () => (
         align="center"
         h="full"
       >
-        <Text fontSize="sm" color="subtle">
+        <Text fontSize="sm" color="white">
           &copy; {new Date().getFullYear()} LOTR. All rights reserved.
         </Text>
       </Flex>

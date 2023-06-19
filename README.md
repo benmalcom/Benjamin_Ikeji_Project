@@ -3,7 +3,7 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ### Online Demo
-The online demo for this application is available at [https://lotr-demo.vercel.app](https://lotr-demo.vercel.app)
+The online demo for this application is available at [https://lotr.vercel.app](https://lotr.vercel.app)
 
 ### Installation
 
