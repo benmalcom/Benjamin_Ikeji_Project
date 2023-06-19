@@ -31,7 +31,7 @@ const styles = {
     },
     '#nprogress .bar': {
       bg: 'white',
-      height: '3px',
+      height: '1.5px',
     },
   }),
 };
