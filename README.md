@@ -12,3 +12,7 @@ The online demo for this application is available at [https://lotr-demo.vercel.a
 2. Create an account at https://the-one-api.dev/ to get an an API key and add it to the `NEXT_PUBLIC_API_KEY` variable in your `.env.local` file.
 3. Run `yarn install` (you need to have `yarn installed`) the command below to install the necessary packages for the project
 4. Run the development server with `yarn dev`. The application should be running at [http://localhost:3002](http://localhost:3002), visit your browser to see the result.
+
+### Running Tests
+
+Run `yarn test` to run the test suites available in the project
