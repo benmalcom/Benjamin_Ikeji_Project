@@ -49,7 +49,7 @@ const CharactersGirdLayout: React.FC<CharactersGirdLayoutProps> = ({
             characters.map(character => (
               <CharacterCard key={character._id} character={character} />
             ))}
-          {loading && <CharacterCardSkeleton count={6} />}
+          {loading && <CharacterCardSkeleton count={9} />}
         </Grid>
       </Container>
       {!loading && !!error && (

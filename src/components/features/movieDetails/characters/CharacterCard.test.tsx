@@ -24,6 +24,8 @@ describe('<CharacterCard />', function () {
     expect(getByText(character.name)).toBeInTheDocument();
     expect(getByText(`Race:`)).toBeInTheDocument();
     expect(getByText(character.race)).toBeInTheDocument();
-    expect(getByRole('link')).toHaveAttribute('href', character.wikiUrl);
+    expect(
+      getByRole('button', { name: 'More Information' })
+    ).toBeInTheDocument();
   });
 });

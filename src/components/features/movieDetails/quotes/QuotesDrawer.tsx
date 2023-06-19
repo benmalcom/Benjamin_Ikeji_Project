@@ -89,10 +89,8 @@ const QuotesDrawer: React.FC<CharactersGirdLayoutProps> = ({
         colorScheme="orange"
       >
         <DrawerOverlay
-          bg="none"
-          backdropFilter="auto"
-          backdropInvert="80%"
-          backdropBlur="2px"
+          bg="blackAlpha.300"
+          backdropFilter="blur(10px) hue-rotate(90deg)"
         />
         <DrawerContent bg="gray.600" boxShadow="xl">
           <DrawerCloseButton color="white" _focus={{ outline: 'none' }} />

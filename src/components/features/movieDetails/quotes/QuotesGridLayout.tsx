@@ -35,7 +35,9 @@ const CharactersGirdLayout: React.FC<CharactersGirdLayoutProps> = ({
             column-count: 2;
             column-width: 460px;
             gap: 24px;
-            margin-top: 30px;
+            &:not(:first-child) {
+              margin-top: 30px;
+            }
           `}
           w="full"
         >
@@ -47,7 +49,7 @@ const CharactersGirdLayout: React.FC<CharactersGirdLayoutProps> = ({
                 charactersName={charactersById?.[quote.character]?.name}
               />
             ))}
-          {loading && <QuoteCardSkeleton count={quotes.length > 0 ? 4 : 10} />}
+          {loading && <QuoteCardSkeleton count={15} />}
         </Box>
       </Container>
       {!loading && quotes.length === 0 && !error && (
@@ -55,8 +57,10 @@ const CharactersGirdLayout: React.FC<CharactersGirdLayoutProps> = ({
       )}
       {!loading && !!error && (
         <ErrorPane
-          error="An error occured while fetching characters, please refresh browser."
+          flexDirection="column"
+          error="An error occured while fetching the quotes, please refresh browser and try again."
           w="fit-content"
+          py={3}
         />
       )}
       {!loading && hasMore && (

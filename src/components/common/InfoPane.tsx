@@ -8,12 +8,12 @@ import {
 } from '@chakra-ui/react';
 import React from 'react';
 
-type ErrorPaneType = AlertProps & {
+type ErrorPaneProps = AlertProps & {
   heading?: string;
   message: string;
 };
 
-export const InfoPane: React.FC<ErrorPaneType> = ({
+export const InfoPane: React.FC<ErrorPaneProps> = ({
   message,
   heading,
   ...props
@@ -21,12 +21,11 @@ export const InfoPane: React.FC<ErrorPaneType> = ({
   <Alert
     as={Flex}
     flexDirection={{ base: 'column', md: 'row' }}
-    status="error"
-    colorScheme="orange"
+    status="warning"
     h="fit-content"
     {...props}
   >
-    <AlertIcon />
+    <AlertIcon mr={2} />
     {heading && <AlertTitle>{heading}</AlertTitle>}
     <AlertDescription>{message}</AlertDescription>
   </Alert>

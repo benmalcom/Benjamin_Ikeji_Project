@@ -5,29 +5,34 @@ import {
   AlertProps,
   AlertTitle,
   Flex,
+  FlexProps,
 } from '@chakra-ui/react';
 import React from 'react';
 
-type ErrorPaneType = AlertProps & {
-  error: string;
-  cta?: React.ReactNode;
-};
+type ErrorPaneProps = AlertProps &
+  FlexProps & {
+    error: string;
+    cta?: React.ReactNode;
+  };
 
-export const ErrorPane: React.FC<ErrorPaneType> = ({
+export const ErrorPane: React.FC<ErrorPaneProps> = ({
   error,
   cta,
   ...props
 }) => (
   <Alert
     as={Flex}
-    flexDirection={{ base: 'column', md: 'row' }}
     status="error"
-    colorScheme="orange"
     h="fit-content"
+    w="100%"
+    alignItems="center"
+    justifyContent="center"
     {...props}
   >
-    <AlertIcon />
-    <AlertTitle>An error occurred!</AlertTitle>
+    <Flex>
+      <AlertIcon mr={2} />
+      <AlertTitle>Error</AlertTitle>
+    </Flex>
     <AlertDescription>{error}</AlertDescription>
     {!!cta && cta}
   </Alert>

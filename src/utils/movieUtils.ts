@@ -1,4 +1,5 @@
 import moviesMetaList from 'data/moviesMetaList.json';
+import { CharacterType } from 'types/character';
 import { MovieMetaInformationType } from 'types/movie';
 export const getMovieMetaInformation = (
   movieName: string
@@ -43,3 +44,46 @@ export const getTrailerLink = (movieName: string) =>
   `https://youtube.com/results?search_query=${encodeURIComponent(
     `${movieName} trailer`
   )}`;
+
+export const getCharacterAttributes = (character: CharacterType) => {
+  const attributes = [
+    {
+      label: 'Name',
+      value: character.name,
+    },
+    {
+      label: 'Race',
+      value: character.race,
+    },
+    {
+      label: 'Gender',
+      value: character.gender,
+    },
+    {
+      label: 'Birth',
+      value: character.birth,
+    },
+    {
+      label: 'Spouse',
+      value: character.spouse,
+    },
+    {
+      label: 'Gender',
+      value: character.gender,
+    },
+    {
+      label: 'Realm',
+      value: character.realm,
+    },
+    {
+      label: 'Hair',
+      value: character.hair,
+    },
+    {
+      label: 'Wiki Info',
+      value: character.wikiUrl,
+    },
+  ];
+
+  return attributes.filter(attribute => Boolean(attribute.value));
+};

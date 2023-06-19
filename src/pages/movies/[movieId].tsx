@@ -16,13 +16,13 @@ import {
   MovieDetailsCard,
   MovieDetailsCardSkeleton,
   CharactersGridLayout,
-} from 'components/movieDetails';
-import QuotesDrawer from 'components/movieDetails/quotes/QuotesDrawer';
+} from 'components/features/movieDetails';
+import QuotesDrawer from 'components/features/movieDetails/quotes/QuotesDrawer';
 import useFetchCharacters from 'hooks/useCharacters';
 import { useFetchMovieById } from 'hooks/useMovies';
 import { CharacterType } from 'types/character';
 
-const FETCH_LIMIT = 15;
+const FETCH_LIMIT = 9;
 
 const Details = () => {
   const router = useRouter();
@@ -102,12 +102,22 @@ const Details = () => {
           )}
           {movieError && (
             <ErrorPane
-              error={movieError.message}
-              cta={<Button onClick={handleFetchMovie}>Try again</Button>}
+              mt={8}
+              error="An error occurred while fetching this movie."
+              cta={
+                <Button
+                  onClick={handleFetchMovie}
+                  ml={5}
+                  colorScheme="orange"
+                  size="sm"
+                >
+                  Try again
+                </Button>
+              }
             />
           )}
 
-          {movieData && (
+          {!movieError && (
             <FlexColumn w="full">
               <Flex
                 align="center"

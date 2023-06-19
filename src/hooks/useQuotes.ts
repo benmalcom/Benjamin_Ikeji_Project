@@ -19,5 +19,4 @@ export const useFetchMovieQuotes = (
 
   return { data, loading: isLoading, error, fetchQuotes: refetch };
 };
-
 export default useFetchMovieQuotes;

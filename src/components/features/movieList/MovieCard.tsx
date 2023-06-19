@@ -37,7 +37,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
       h={{ base: 'full', lg: '320px' }}
       pos="relative"
       flexDir={{ base: 'column', lg: 'row' }}
-      align={{ base: 'center', md: 'unset' }}
+      align={{ base: 'center', xl: 'unset' }}
       gap={{ base: 8, md: 6, lg: 'unset' }}
       bg="gray.800"
       p={{ base: 3, md: 6 }}

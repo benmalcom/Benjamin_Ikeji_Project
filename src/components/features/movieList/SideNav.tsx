@@ -3,13 +3,13 @@ import React from 'react';
 import { BsChevronDown, BsChevronUp } from 'react-icons/bs';
 import { FlexColumn } from 'components/common';
 
-type MovieCardSkeletonType = {
+type SideNavProps = {
   onScrollDown(): void;
   onScrollUp(): void;
   isTopVisible: boolean;
   isBottomVisible: boolean;
 };
-const SideNav: React.FC<MovieCardSkeletonType> = ({
+const SideNav: React.FC<SideNavProps> = ({
   onScrollDown,
   onScrollUp,
   isTopVisible,
@@ -17,6 +17,7 @@ const SideNav: React.FC<MovieCardSkeletonType> = ({
 }) => (
   <FlexColumn
     justify="space-between"
+    display={{ base: 'none', md: 'flex' }}
     w={{ base: 'fit-content', md: '70px' }}
     h={{ base: 'fit-content', md: '120px' }}
     bg="gray.600"

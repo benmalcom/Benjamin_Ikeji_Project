@@ -69,7 +69,6 @@ export const theme = extendTheme({
     },
     Input: {
       baseStyle: {},
-      // Credit: https://stackoverflow.com/questions/70809036/how-can-i-overwrite-styles-of-an-autofilled-input-when-using-chakra-ui
       variants: {
         defaultVariant: {
           field: {
@@ -90,11 +89,6 @@ export const theme = extendTheme({
       },
       defaultProps: {
         variant: 'defaultVariant',
-      },
-    },
-    FormLabel: {
-      baseStyle: {
-        fontWeight: 400, // Normally, it is "semibold"
       },
     },
   },
