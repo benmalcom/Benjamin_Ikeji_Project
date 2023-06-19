@@ -60,7 +60,7 @@ const CharactersGirdLayout: React.FC<CharactersGirdLayoutProps> = ({
         />
       )}
       {!loading && hasMore && (
-        <Box ref={bottomRef} mb={6} h="70px" border="2px solid blackAlpha" />
+        <Box ref={bottomRef} mb={6} h="70px" border="2px solid black" />
       )}
     </FlexColumn>
   );
