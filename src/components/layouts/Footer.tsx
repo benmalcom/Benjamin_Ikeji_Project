@@ -1,12 +1,4 @@
-import {
-  ButtonGroup,
-  Container,
-  IconButton,
-  Flex,
-  Text,
-  Box,
-} from '@chakra-ui/react';
-import { FaTwitter, FaInstagram } from 'react-icons/fa';
+import { Container, Flex, Text, Box } from '@chakra-ui/react';
 
 const Footer = () => (
   <Box
@@ -27,22 +19,6 @@ const Footer = () => (
         <Text fontSize="sm" color="subtle">
           &copy; {new Date().getFullYear()} LOTR. All rights reserved.
         </Text>
-        <ButtonGroup variant="ghost">
-          <IconButton
-            as="a"
-            href="#"
-            aria-label="Instagram"
-            colorScheme="pink"
-            icon={<FaInstagram fontSize="1.25rem" />}
-          />
-          <IconButton
-            as="a"
-            href="#"
-            aria-label="Twitter"
-            icon={<FaTwitter fontSize="1.25rem" />}
-            colorScheme="twitter"
-          />
-        </ButtonGroup>
       </Flex>
     </Container>
   </Box>
