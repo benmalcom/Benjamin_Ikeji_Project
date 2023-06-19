@@ -52,7 +52,7 @@ const MovieDetailsCard: React.FC<MovieCardProps> = ({ movie }) => {
         py={{ base: 5, md: 5 }}
       >
         <Image
-          h={{ base: '320px', lg: 'full' }}
+          h={{ base: '340px', lg: 'full' }}
           w={{ base: '80%', md: '30%', lg: '20%' }}
           src={`${POSTER_IMAGE_PATH}/${metaInformation.poster}`}
           alt="Movie poster image"
